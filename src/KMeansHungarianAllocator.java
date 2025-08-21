@@ -19,7 +19,7 @@ public class KMeansHungarianAllocator extends StaticClustering
     // --- フィールド ---
 
     // エージェントID → クラスタ番号 の対応表
-    private Map<EntityID, Integer> assignment = new HashMap<>();
+    private final Map<EntityID, Integer> assignment = new HashMap<>();
 
     // k-means++ のクラスタリング実行オブジェクト
     private KMeansPP clusterer;
@@ -28,7 +28,7 @@ public class KMeansHungarianAllocator extends StaticClustering
     private int n = 0;
 
     // このモジュールを動かしている自エージェントの種別（FIRE_BRIGADE 等）
-    private StandardEntityURN urn;
+    private final StandardEntityURN urn;
 
     // --- 定数 ---
 
@@ -77,9 +77,10 @@ public class KMeansHungarianAllocator extends StaticClustering
 
 	// 結果をPrecomputeDataに保存（urnで名前空間化）
 	pd.setInteger(this.addSuffixToKey(PD_CLUSTER_N), this.n);
-	for (EntityID agent : this.assignment.keySet())
+	for (Map.Entry<EntityID, Integer> e : this.assignment.entrySet())
         {
-	    int i = this.assignment.get(agent);
+	    EntityID agent = e.getKey();
+	    int i = e.getValue();
 	    // i番目のクラスタの全要素を取得
 	    Collection<EntityID> cluster = this.clusterer.getClusterMembers(i);
 	    // i番目のクラスタの要素を保存
@@ -271,7 +272,7 @@ public class KMeansHungarianAllocator extends StaticClustering
     }
 
     // Hungarianアルゴリズムを用いてエージェントにクラスタを割当
-    // 前提：エージェント数とクラスター数が一致（1対1の割当）
+    // 前提：エージェント数とクラスタ数が一致（1対1の割当）
     private void assignAgentsToClusters()
     {
 	// 同種類のエージェントを全て取得
