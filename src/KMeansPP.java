@@ -1,4 +1,4 @@
-package tutorial.module.algorithm;
+package MyTeam.module.algorithm;
 
 import rescuecore2.worldmodel.EntityID;
 import java.util.*;

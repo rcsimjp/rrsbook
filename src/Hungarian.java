@@ -1,4 +1,4 @@
-package tutorial.module.algorithm;
+package MyTeam.module.algorithm;
 
 import java.util.*;
 

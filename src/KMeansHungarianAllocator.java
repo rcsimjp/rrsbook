@@ -10,8 +10,6 @@ import rescuecore2.worldmodel.EntityID;
 import rescuecore2.standard.entities.*;
 import static rescuecore2.standard.entities.StandardEntityURN.*;
 import java.util.*;
-//次のimport文が必要かどうかをチェック
-import static java.util.stream.Collectors.*;
 import static java.util.Comparator.*;
 
 public class KMeansHungarianAllocator extends StaticClustering
@@ -89,7 +87,6 @@ public class KMeansHungarianAllocator extends StaticClustering
 	    // i番目のクラスタに対応するエージェントを保存
 	    pd.setEntityID(this.addSuffixToKey(PD_CLUSTER_A, i), agent);
 	}
-	
 	return this;
     }
     
