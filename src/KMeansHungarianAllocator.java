@@ -68,10 +68,10 @@ public class KMeansHungarianAllocator extends StaticClustering
 	// 念のため前回結果をクリア
         this.assignment.clear();
 
-	this.initN();              //クラスタ数を決定
-	this.initClusterer();	   // k-means++の初期セントロイドを用意
+	this.initN();                  //クラスタ数を決定
+	this.initClusterer();          // k-means++の初期セントロイドを用意
 	this.clusterer.execute(REP_PRECOMPUTE); // k-means++を実行
-	this.assignAgentsToClusters();  // Hungarianで1対1割当を決定
+	this.assignAgentsToClusters(); // Hungarianで1対1割当を決定
 
 	// 結果をPrecomputeDataに保存（urnで名前空間化）
 	pd.setInteger(this.addSuffixToKey(PD_CLUSTER_N), this.n);
@@ -80,10 +80,12 @@ public class KMeansHungarianAllocator extends StaticClustering
 	    EntityID agent = e.getKey();
 	    int i = e.getValue();
 	    // i番目のクラスタの全要素を取得
-	    Collection<EntityID> cluster = this.clusterer.getClusterMembers(i);
+	    Collection<EntityID> cluster =
+		this.clusterer.getClusterMembers(i);
 	    // i番目のクラスタの要素を保存
 	    pd.setEntityIDList(
-                this.addSuffixToKey(PD_CLUSTER_M, i), new ArrayList<>(cluster));
+                this.addSuffixToKey(PD_CLUSTER_M, i),
+		new ArrayList<>(cluster));
 	    // i番目のクラスタに対応するエージェントを保存
 	    pd.setEntityID(this.addSuffixToKey(PD_CLUSTER_A, i), agent);
 	}
@@ -139,10 +141,10 @@ public class KMeansHungarianAllocator extends StaticClustering
         // 重複した処理の実行を回避
         if (this.getCountPreparate() > 1) return this;
 
-	this.initN();              //クラスタ数を決定
-	this.initClusterer();	   // k-means++の初期セントロイドを用意
+	this.initN();                  //クラスタ数を決定
+	this.initClusterer();          // k-means++の初期セントロイドを用意
 	this.clusterer.execute(REP_PREPARE); // k-means++を実行
-	this.assignAgentsToClusters();  // Hungarianで1対1割当を決定
+	this.assignAgentsToClusters(); // Hungarianで1対1割当を決定
  	
         return this;
     }
@@ -199,7 +201,8 @@ public class KMeansHungarianAllocator extends StaticClustering
     @Override
     public Collection<EntityID> getClusterEntityIDs(int i)
     {
-	if (i < 0 || i >= this.n || this.clusterer == null) return Collections.emptyList();
+	if (i < 0 || i >= this.n || this.clusterer == null)
+	    return Collections.emptyList();
         return this.clusterer.getClusterMembers(i);
     }
 
@@ -255,8 +258,8 @@ public class KMeansHungarianAllocator extends StaticClustering
 
 	for (int i=0; i<size; ++i)
 	{
-	    // StandardEntityクラスでは座標を得ることができません．
-	    // 地図上のオブジェクトを表すAreaクラスにダウンキャストします．
+	    // StandardEntityクラスでは座標を取得不可
+	    // 地図上のオブジェクトを表すAreaクラスにダウンキャスト
 	    // (エージェントの場合はHumanクラス)
 	    Area area = (Area)entities.get(i);
 	    is[i] = area.getID();
