@@ -69,7 +69,7 @@ public class KMeansHungarianAllocator extends StaticClustering
         this.assignment.clear();
 
 	this.initN();                  // クラスタ数を決定
-	this.initClusterer();          // クラスタリング器を生成
+	this.initClusterer();          // クラスタリングインスタンスの初期化
 	this.clusterer.execute(REP_PRECOMPUTE); // k-means++を実行
 	this.assignAgentsToClusters(); // Hungarianで1対1割当を決定
 
@@ -141,8 +141,8 @@ public class KMeansHungarianAllocator extends StaticClustering
         // 重複した処理の実行を回避
         if (this.getCountPreparate() > 1) return this;
 
-	this.initN();                  //クラスタ数を決定
-	this.initClusterer();          // クラスタリング器を生成
+	this.initN();                  // クラスタ数を決定
+	this.initClusterer();          // クラスタリングインスタンスの初期化
 	this.clusterer.execute(REP_PREPARE); // k-means++を実行
 	this.assignAgentsToClusters(); // Hungarianで1対1割当を決定
  	
@@ -233,7 +233,7 @@ public class KMeansHungarianAllocator extends StaticClustering
 	    }
     }
 
-    // クラスタリング器（クラスタリングの実体，インスタンス）の初期化
+    // クラスタリング器（クラスタリングの実体，インスタンス）の生成，初期化
     private void initClusterer()
     {
 	// 次のオブジェクトを全て取得
