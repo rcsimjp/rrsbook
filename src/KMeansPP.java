@@ -90,8 +90,8 @@ public class KMeansPP
         Random random = new Random(COMMON_SEED);
 
 	// 1.「1つ目」の初期セントロイドは一様ランダムに選ぶ
-        int r = random.nextInt(targets.length);
-        ret[0].addMember(targets[r], xs[r], ys[r]);
+        int first = random.nextInt(targets.length);
+        ret[0].addMember(targets[first], xs[first], ys[first]);
         ret[0].updateCenter();
 
 	// 2. 各点の D(x)^2 = 既選中心までの最小二乗距離 を管理
