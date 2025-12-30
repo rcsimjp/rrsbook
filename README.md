@@ -7,5 +7,5 @@
 - [RoboCup RescueSim公式Webの情報](https://rescuesim.robocup.org/research/publications/)
 - [RoboCupシンポジウムでの発表リスト](https://rescuesim.robocup.org/research/symposium/)
 ## ソフトウェアの情報
-- [ADF-Python](https://roborescue.github.io/adf-core-python/)
+- [ADF-Pythonのドキュメント](https://roborescue.github.io/adf-core-python/)
 - [ADF-Pythonのサンプルエージェント](https://github.com/adf-python/adf-sample-agent-python) 
